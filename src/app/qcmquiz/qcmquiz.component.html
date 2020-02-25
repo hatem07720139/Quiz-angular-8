@@ -1,0 +1,25 @@
+<h1 class="text-primary">Charger votre questionnaire</h1>
+<h3><span class="text-primary">Coach</span> : {{userConnected.username}}</h3>
+<label for="typeOfTest" class="text-primary">Nom du Qcm : </label>
+<input type="text" class="form-ctrl" id="typeOfTest" placeholder="entrer le nom de QCM">
+<div class="form-group">
+    <form [formGroup]="form">
+        <div formArrayName="quiz" *ngFor="let qcm of form.get('quiz').controls;let i =index;">
+            <div [formGroupName]="i">
+                <label>Question {{i+1}}</label>
+                <input formControlName="ask" type="text" class="form-control" placeholder="Poser votre question">
+                <label for="inputAddress">Taper votre reponses</label>
+                <input formControlName="rep1" type="text" class="form-control" placeholder="Taper reponse N°1"><br>
+                <input formControlName="rep2" type="text" class="form-control" placeholder="Taper reponse N°2"><br>
+                <input formControlName="rep3" type="text" class="form-control" placeholder="Taper reponse N°3"><br>
+                <input formControlName="rep4" type="text" class="form-control" placeholder="Taper reponse N°4"><br>
+                <label>La bonne reponse</label>
+                <input formControlName="bonneRep" type="text" class="form-control" placeholder="Taper la bonne reponse"><br>
+                <button class="btn btn-secondary" (click)="removeAsk(i)">Supprimer</button>
+                <hr>
+            </div>
+        </div>
+        <button class="btn btn-secondary margLeft" (click)="addAsk()">+</button><br><br>
+        <button class="btn btn-primary regBtnValid" (click)=" addtest()">Valider</button>
+    </form>
+</div>
